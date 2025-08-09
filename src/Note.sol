@@ -1,57 +1,78 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract NoteManager {
-    struct Note {
-        uint256 id;
-        string content;
-        address author;
-        bool exists; 
+contract Notes {
+    enum Status {
+        Active,
+        Archived
     }
 
-    uint256 private nextId = 1;
-    mapping(uint256 => Note) private notes;
-    uint256[] private noteIds;
+    struct Note {
+        uint256 id;
+        string title;
+        string content;
+        Status status;
+    }
 
-    function createNote(string memory _content) public {
-        uint256 id = nextId;
-        notes[id] = Note({
-            id: id,
+    uint256 private nextId;
+    Note[] private notes; 
+    mapping(uint256 => Note) private notesById; 
+
+    event NoteCreated(uint256 indexed id, string title);
+    event NoteUpdated(uint256 indexed id, string newTitle);
+    event NoteArchived(uint256 indexed id);
+
+    function createNote(string memory _title, string memory _content) public {
+        Note memory newNote = Note({
+            id: nextId,
+            title: _title,
             content: _content,
-            author: msg.sender,
-            exists: true
+            status: Status.Active
         });
-        noteIds.push(id);
+
+        notes.push(newNote);
+        notesById[nextId] = newNote;
+
+        emit NoteCreated(nextId, _title);
         nextId++;
     }
 
     function getNote(uint256 _id) public view returns (Note memory) {
-        require(notes[_id].exists, "Note not found");
-        return notes[_id];
+        return notesById[_id];
     }
 
-    function getAllNoteIds() public view returns (uint256[] memory) {
-        return noteIds;
+    function getAllNotes() public view returns (Note[] memory) {
+        return notes;
     }
 
-    function updateNote(uint256 _id, string memory _newContent) public {
-        require(notes[_id].exists, "Note not found");
-        require(notes[_id].author == msg.sender, "Not your note");
-        notes[_id].content = _newContent;
-    }
+    function updateNote(uint256 _id, string memory _newTitle, string memory _newContent) public {
+        Note storage note = notesById[_id];
+        require(note.status == Status.Active, "Note is archived");
+        note.title = _newTitle;
+        note.content = _newContent;
 
-    function deleteNote(uint256 _id) public {
-        require(notes[_id].exists, "Note not found");
-        require(notes[_id].author == msg.sender, "Not your note");
-
-        delete notes[_id];
-
-        for (uint256 i = 0; i < noteIds.length; i++) {
-            if (noteIds[i] == _id) {
-                noteIds[i] = noteIds[noteIds.length - 1];
-                noteIds.pop();
+        // Đồng bộ array
+        for (uint256 i = 0; i < notes.length; i++) {
+            if (notes[i].id == _id) {
+                notes[i] = note;
                 break;
             }
         }
+
+        emit NoteUpdated(_id, _newTitle);
+    }
+
+    function archiveNote(uint256 _id) public {
+        Note storage note = notesById[_id];
+        note.status = Status.Archived;
+
+        for (uint256 i = 0; i < notes.length; i++) {
+            if (notes[i].id == _id) {
+                notes[i] = note;
+                break;
+            }
+        }
+
+        emit NoteArchived(_id);
     }
 }

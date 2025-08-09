@@ -4,54 +4,37 @@ pragma solidity ^0.8.24;
 import "forge-std/Test.sol";
 import "../src/Note.sol";
 
-contract NoteManagerTest is Test {
-    NoteManager noteManager;
-
-    address test1 = address(0x123);
-    address test2 = address(0x456);
+contract NotesTest is Test {
+    Notes notes;
 
     function setUp() public {
-        noteManager = new NoteManager();
+        notes = new Notes();
     }
 
-    function testCreateAndReadNote() public {
-        vm.prank(test1);
-        noteManager.createNote("Hello World");
+    function testCreateNote() public {
+        notes.createNote("First", "Test1");
+        Notes.Note memory note = notes.getNote(0);
 
-        NoteManager.Note memory note = noteManager.getNote(1);
-        assertEq(note.id, 1);
-        assertEq(note.content, "Hello World");
-        assertEq(note.author, test1);
+        assertEq(note.id, 0);
+        assertEq(note.title, "First");
+        assertEq(note.content, "Test1");
+        assertEq(uint(note.status), uint(Notes.Status.Active));
     }
 
     function testUpdateNote() public {
-        vm.prank(test1);
-        noteManager.createNote("Old Content");
+        notes.createNote("Old", "Content");
+        notes.updateNote(0, "New", "Updated content");
 
-        vm.prank(test1);
-        noteManager.updateNote(1, "New Content");
-
-        NoteManager.Note memory note = noteManager.getNote(1);
-        assertEq(note.content, "New Content");
+        Notes.Note memory note = notes.getNote(0);
+        assertEq(note.title, "New");
+        assertEq(note.content, "Updated content");
     }
 
-    function testDeleteNote() public {
-        vm.prank(test1);
-        noteManager.createNote("Temp");
+    function testArchiveNote() public {
+        notes.createNote("To Archive", "Some content");
+        notes.archiveNote(0);
 
-        vm.prank(test1);
-        noteManager.deleteNote(1);
-
-        vm.expectRevert(bytes("Note not found"));
-        noteManager.getNote(1);
-    }
-    
-    function testCannotUpdateOthersNote() public {
-        vm.prank(test1);
-        noteManager.createNote("Test1 Note");
-
-        vm.prank(test2);
-        vm.expectRevert(bytes("Not your note"));
-        noteManager.updateNote(1, "Test233 tries");
+        Notes.Note memory note = notes.getNote(0);
+        assertEq(uint(note.status), uint(Notes.Status.Archived));
     }
 }
