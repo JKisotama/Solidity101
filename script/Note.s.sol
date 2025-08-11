@@ -13,9 +13,14 @@ contract NotesScript is Script {
 
         notes.createNote("First Note", "This is my first note");
         notes.createNote("Second Note", "Hello blockchain");
+        notes.updateNote(0, "First Note Updated", "Updated content");
+        notes.archiveNote(1);
+        notes.deleteNote(0);
 
-        Notes.Note[] memory allNotes = notes.getAllNotes();
-        console.log("Total notes:", allNotes.length);
+        bool exists0 = notes.noteExists(0);
+        bool exists1 = notes.noteExists(1);
+        console.log("Note 0 exists:", exists0);
+        console.log("Note 1 exists:", exists1);
 
         vm.stopBroadcast();
     }
