@@ -9,51 +9,56 @@ contract Notes {
         string content;
         Status status;
     }
-    uint256 private nextId;
-    mapping(uint256 => Note) private notesById;
-    mapping(uint256 => bool) private exists;
+    mapping(address => uint256) private nextId;
+    mapping(address => mapping(uint256 => Note)) private notesByUser;
+    mapping(address => mapping(uint256 => bool)) private exists;
 
-    event NoteCreated(uint256 indexed id, string title);
-    event NoteUpdated(uint256 indexed id, string newTitle);
-    event NoteArchived(uint256 indexed id);
-    event NoteDeleted(uint256 indexed id);
+    event NoteCreated(address indexed user, uint256 indexed id, string title);
+    event NoteUpdated(address indexed user, uint256 indexed id, string newTitle);
+    event NoteArchived(address indexed user, uint256 indexed id);
+    event NoteDeleted(address indexed user, uint256 indexed id);
 
     function createNote(string memory _title, string memory _content) public {
-        notesById[nextId] = Note({id: nextId, title: _title, content: _content, status: Status.Active});
-        exists[nextId] = true;
-        emit NoteCreated(nextId, _title);
-        nextId++;
+        uint256 id = nextId[msg.sender];
+        notesByUser[msg.sender][id] = Note({id: id, title: _title, content: _content, status: Status.Active});
+        exists[msg.sender][id] = true;
+        emit NoteCreated(msg.sender, id, _title);
+        nextId[msg.sender]++;
     }
 
-    function getNote(uint256 _id) public view returns (Note memory) {
-        require(exists[_id], "Note does not exist");
-        return notesById[_id];
+    function getNote(address user, uint256 _id) public view returns (Note memory) {
+        require(exists[user][_id], "Note does not exist");
+        return notesByUser[user][_id];
     }
 
     function updateNote(uint256 _id, string memory _newTitle, string memory _newContent) public {
-        require(exists[_id], "Note does not exist");
-        Note storage note = notesById[_id];
+        require(exists[msg.sender][_id], "Note does not exist");
+        Note storage note = notesByUser[msg.sender][_id];
         require(note.status == Status.Active, "Note is archived");
         note.title = _newTitle;
         note.content = _newContent;
-        emit NoteUpdated(_id, _newTitle);
+        emit NoteUpdated(msg.sender, _id, _newTitle);
     }
 
     function archiveNote(uint256 _id) public {
-        require(exists[_id], "Note does not exist");
-        Note storage note = notesById[_id];
+        require(exists[msg.sender][_id], "Note does not exist");
+        Note storage note = notesByUser[msg.sender][_id];
         note.status = Status.Archived;
-        emit NoteArchived(_id);
+        emit NoteArchived(msg.sender, _id);
     }
 
     function deleteNote(uint256 _id) public {
-        require(exists[_id], "Note does not exist");
-        delete notesById[_id];
-        exists[_id] = false;
-        emit NoteDeleted(_id);
+        require(exists[msg.sender][_id], "Note does not exist");
+        delete notesByUser[msg.sender][_id];
+        exists[msg.sender][_id] = false;
+        emit NoteDeleted(msg.sender, _id);
     }
 
-    function noteExists(uint256 _id) public view returns (bool) {
-        return exists[_id];
+    function noteExists(address user, uint256 _id) public view returns (bool) {
+        return exists[user][_id];
+    }
+
+    function nextNoteId(address user) public view returns (uint256) {
+        return nextId[user];
     }
 }
