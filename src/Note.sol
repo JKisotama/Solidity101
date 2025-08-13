@@ -2,6 +2,8 @@
 pragma solidity ^0.8.24;
 
 contract Notes {
+    address public owner;
+
     enum Status { Active, Archived }
     struct Note {
         uint256 id;
@@ -17,6 +19,22 @@ contract Notes {
     event NoteUpdated(address indexed user, uint256 indexed id, string newTitle);
     event NoteArchived(address indexed user, uint256 indexed id);
     event NoteDeleted(address indexed user, uint256 indexed id);
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "UNAUTHORIZED");
+        _;
+    }
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0), "New owner is the zero address");
+        emit OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
+    }
 
     function createNote(string memory _title, string memory _content) public {
         uint256 id = nextId[msg.sender];
@@ -60,5 +78,9 @@ contract Notes {
 
     function nextNoteId(address user) public view returns (uint256) {
         return nextId[user];
+    }
+
+    function withdraw() external onlyOwner {
+        payable(owner).transfer(address(this).balance);
     }
 }

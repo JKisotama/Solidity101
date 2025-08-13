@@ -9,6 +9,8 @@ contract NotesTest is Test {
     address user1 = address(0x1);
     address user2 = address(0x2);
 
+    receive() external payable {}
+
     function setUp() public {
         notes = new Notes();
     }
@@ -111,6 +113,78 @@ contract NotesTest is Test {
         Notes.Note memory note = notes.getNote(user, 0);
         assertEq(note.title, title);
         assertEq(note.content, content);
+        vm.stopPrank();
+    }
+
+    function testCannotUpdateOthersNote() public {
+        vm.startPrank(user1);
+        notes.createNote("User1's Note", "Content");
+        vm.stopPrank();
+
+        vm.startPrank(user2);
+        vm.expectRevert("Note does not exist");
+        notes.updateNote(0, "New Title", "New Content");
+        vm.stopPrank();
+    }
+
+    function testCannotDeleteOthersNote() public {
+        vm.startPrank(user1);
+        notes.createNote("User1's Note", "Content");
+        vm.stopPrank();
+
+        vm.startPrank(user2);
+        vm.expectRevert("Note does not exist");
+        notes.deleteNote(0);
+        vm.stopPrank();
+    }
+
+    function testCannotArchiveOthersNote() public {
+        vm.startPrank(user1);
+        notes.createNote("User1's Note", "Content");
+        vm.stopPrank();
+
+        vm.startPrank(user2);
+        vm.expectRevert("Note does not exist");
+        notes.archiveNote(0);
+        vm.stopPrank();
+    }
+
+    function testWithdraw() public {
+        address deployer = address(this);
+        assertEq(notes.owner(), deployer);
+
+        // Test that a non-owner cannot withdraw
+        vm.startPrank(user1);
+        vm.expectRevert("UNAUTHORIZED");
+        notes.withdraw();
+        vm.stopPrank();
+    }
+
+    function testOwnerCanWithdraw() public {
+        address deployer = address(this);
+        // Test that the owner can withdraw
+        vm.deal(address(notes), 1 ether);
+        uint256 balanceBefore = deployer.balance;
+        vm.prank(deployer);
+        notes.withdraw();
+        assertEq(deployer.balance, balanceBefore + 1 ether);
+    }
+
+    function testTransferOwnership() public {
+        address deployer = address(this);
+        address newOwner = user2;
+
+        vm.prank(deployer);
+        vm.expectEmit(true, true, true, true);
+        emit Notes.OwnershipTransferred(deployer, newOwner);
+        notes.transferOwnership(newOwner);
+
+        assertEq(notes.owner(), newOwner);
+
+        // Old owner cannot transfer ownership anymore
+        vm.startPrank(deployer);
+        vm.expectRevert("UNAUTHORIZED");
+        notes.transferOwnership(user1);
         vm.stopPrank();
     }
 }
