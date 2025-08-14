@@ -20,7 +20,7 @@ contract NotesArrayTest is Test {
         assertEq(note.id, 0);
         assertEq(note.title, "First");
         assertEq(note.content, "Test1");
-        assertEq(uint(note.status), uint(NotesArray.Status.Active));
+        assertEq(uint256(note.status), uint256(NotesArray.Status.Active));
         assertTrue(notesArray.noteExists(0));
         vm.stopPrank();
     }
@@ -40,7 +40,7 @@ contract NotesArrayTest is Test {
         notesArray.createNote("To Archive", "Some content");
         notesArray.archiveNote(0);
         NotesArray.Note memory note = notesArray.getNote(0);
-        assertEq(uint(note.status), uint(NotesArray.Status.Archived));
+        assertEq(uint256(note.status), uint256(NotesArray.Status.Archived));
         vm.stopPrank();
     }
 

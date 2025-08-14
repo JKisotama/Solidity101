@@ -2,13 +2,18 @@
 pragma solidity ^0.8.24;
 
 contract NotesArray {
-    enum Status { Active, Archived }
+    enum Status {
+        Active,
+        Archived
+    }
+
     struct Note {
         uint256 id;
         string title;
         string content;
         Status status;
     }
+
     Note[] private notes;
     mapping(uint256 => uint256) private noteIndexById;
 
