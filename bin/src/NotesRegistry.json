@@ -1,0 +1,652 @@
+{
+    "contractName": "NotesRegistry",
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_factoryAddress",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "allNotesContracts",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getRegistry",
+            "outputs": [
+                {
+                    "internalType": "address[]",
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "notesFactory",
+            "outputs": [
+                {
+                    "internalType": "contract INotesFactory",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "updateRegistry",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.8.30+commit.73712a01\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_factoryAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"allNotesContracts\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRegistry\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"notesFactory\",\"outputs\":[{\"internalType\":\"contract INotesFactory\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updateRegistry\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/quantnd/Library/CloudStorage/OneDrive-GOLDENFINANCIALINNOVATION(GFI)/GFI-Bot/Solidity_learning/src/NotesRegistry.sol\":\"NotesRegistry\"},\"evmVersion\":\"prague\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"/Users/quantnd/Library/CloudStorage/OneDrive-GOLDENFINANCIALINNOVATION(GFI)/GFI-Bot/Solidity_learning/src/NotesRegistry.sol\":{\"keccak256\":\"0x94dbd62e0cebadebdae516ef89eb8292e8de0cd3b180e06647cbc44d7aa3e7b0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d919c315e93764b9fd2264c055245b4706f2bdc41c0fbc13961496badeb0f8d0\",\"dweb:/ipfs/QmXeCg1ks3C3dRzXzuk5wSGDX4FMGkVsNqda8Nf4QNWqNJ\"]}},\"version\":1}",
+    "bytecode": "608034606f57601f61042138819003918201601f19168301916001600160401b03831184841017607357808492602094604052833981010312606f57516001600160a01b03811690819003606f575f80546001600160a01b03191691909117905560405161039990816100888239f35b5f80fd5b634e487b7160e01b5f52604160045260245ffdfe6080806040526004361015610012575f80fd5b5f3560e01c9081633eb035c3146102dc5750806349d10b64146101285780635ab1bd5314610073576386f5f82714610048575f80fd5b3461006f575f36600319011261006f575f546040516001600160a01b039091168152602090f35b5f80fd5b3461006f575f36600319011261006f576040518060206001549283815201809260015f525f5160206103445f395f51905f52905f5b81811061010957505050816100be910382610321565b604051918291602083019060208452518091526040830191905f5b8181106100e7575050500390f35b82516001600160a01b03168452859450602093840193909201916001016100d9565b82546001600160a01b03168452602090930192600192830192016100a8565b3461006f575f36600319011261006f575f8054604051639556256760e01b81529190829060049082906001600160a01b03165afa9081156102d1575f91610226575b5080519067ffffffffffffffff82116102125768010000000000000000821161021257600154826001558083106101da575b506020019060015f525f5b8181106101b057005b82516001600160a01b03165f5160206103445f395f51905f528201556020909201916001016101a7565b5f5160206103445f395f51905f5201825f5160206103445f395f51905f52015b818110610207575061019c565b5f81556001016101fa565b634e487b7160e01b5f52604160045260245ffd5b90503d805f833e6102378183610321565b81019060208183031261006f5780519067ffffffffffffffff821161006f570181601f8201121561006f5780519167ffffffffffffffff8311610212578260051b916040519361028a6020850186610321565b845260208085019382010191821161006f57602001915b8183106102b1575050508161016a565b82516001600160a01b038116810361006f578152602092830192016102a1565b6040513d5f823e3d90fd5b3461006f57602036600319011261006f576004359060015482101561006f5760015f525f5160206103445f395f51905f52909101546001600160a01b03168152602090f35b90601f8019910116810190811067ffffffffffffffff8211176102125760405256feb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6a2646970667358221220e4fa553b0f4e554a258517ade561088cacfda6f506f2d2a7f721221552d7612364736f6c634300081e0033",
+    "deployedBytecode": "6080806040526004361015610012575f80fd5b5f3560e01c9081633eb035c3146102dc5750806349d10b64146101285780635ab1bd5314610073576386f5f82714610048575f80fd5b3461006f575f36600319011261006f575f546040516001600160a01b039091168152602090f35b5f80fd5b3461006f575f36600319011261006f576040518060206001549283815201809260015f525f5160206103445f395f51905f52905f5b81811061010957505050816100be910382610321565b604051918291602083019060208452518091526040830191905f5b8181106100e7575050500390f35b82516001600160a01b03168452859450602093840193909201916001016100d9565b82546001600160a01b03168452602090930192600192830192016100a8565b3461006f575f36600319011261006f575f8054604051639556256760e01b81529190829060049082906001600160a01b03165afa9081156102d1575f91610226575b5080519067ffffffffffffffff82116102125768010000000000000000821161021257600154826001558083106101da575b506020019060015f525f5b8181106101b057005b82516001600160a01b03165f5160206103445f395f51905f528201556020909201916001016101a7565b5f5160206103445f395f51905f5201825f5160206103445f395f51905f52015b818110610207575061019c565b5f81556001016101fa565b634e487b7160e01b5f52604160045260245ffd5b90503d805f833e6102378183610321565b81019060208183031261006f5780519067ffffffffffffffff821161006f570181601f8201121561006f5780519167ffffffffffffffff8311610212578260051b916040519361028a6020850186610321565b845260208085019382010191821161006f57602001915b8183106102b1575050508161016a565b82516001600160a01b038116810361006f578152602092830192016102a1565b6040513d5f823e3d90fd5b3461006f57602036600319011261006f576004359060015482101561006f5760015f525f5160206103445f395f51905f52909101546001600160a01b03168152602090f35b90601f8019910116810190811067ffffffffffffffff8211176102125760405256feb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6a2646970667358221220e4fa553b0f4e554a258517ade561088cacfda6f506f2d2a7f721221552d7612364736f6c634300081e0033",
+    "sourceMap": "197:426:26:-:0;;;;;;;;;;;;;-1:-1:-1;;197:426:26;;;;-1:-1:-1;;;;;197:426:26;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;197:426:26;;;;;;;;-1:-1:-1;197:426:26;;-1:-1:-1;;;;;;197:426:26;;;;;;;;;;;;;;;;;-1:-1:-1;197:426:26;;;;;;-1:-1:-1;197:426:26;;;;;-1:-1:-1;197:426:26",
+    "deployedSourceMap": "197:426:26:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;197:426:26;;;;;;;;-1:-1:-1;;;;;197:426:26;;;;;;;;;;;;;;;;;;-1:-1:-1;;197:426:26;;;;;;;;597:17;197:426;;;;;;;;597:17;197:426;;-1:-1:-1;;;;;;;;;;;197:426:26;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;197:426:26;;;;;-1:-1:-1;197:426:26;;;;;;;;;597:17;197:426;;;;;;-1:-1:-1;;;;;197:426:26;;;;;;;;597:17;197:426;;;;;;;;;;;;;-1:-1:-1;;197:426:26;;;;;;;;;-1:-1:-1;;;474:31:26;;197:426;;;;;;;;-1:-1:-1;;;;;197:426:26;474:31;;;;;;;197:426;474:31;;;197:426;;;;;;;;;;;;;;;454:51;197:426;;454:51;197:426;;;;;;;;;;;454:51;197:426;;;;;;;;;;;;;-1:-1:-1;;;;;197:426:26;-1:-1:-1;;;;;;;;;;;197:426:26;;;;;;;;454:51;197:426;;;;-1:-1:-1;;;;;;;;;;;197:426:26;;-1:-1:-1;;;;;;;;;;;197:426:26;;;;;;;;;;;;;;454:51;197:426;;;;;;;;;;;;;;;474:31;;;;;197:426;474:31;;;;;;:::i;:::-;;;197:426;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;474:31;;;;;;197:426;;;-1:-1:-1;;;;;197:426:26;;;;;;;;;;;;;;;;474:31;197:426;;;;;;;;;;;;;;;-1:-1:-1;;197:426:26;;;;;;;;;265:34;;;;;197:426;;;-1:-1:-1;;;;;;;;;;;197:426:26;;;;-1:-1:-1;;;;;197:426:26;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+    "sourcePath": "/Users/quantnd/Library/CloudStorage/OneDrive-GOLDENFINANCIALINNOVATION(GFI)/GFI-Bot/Solidity_learning/src/NotesRegistry.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.8.30+commit.73712a01"
+    },
+    "ast": {
+        "absolutePath": "/Users/quantnd/Library/CloudStorage/OneDrive-GOLDENFINANCIALINNOVATION(GFI)/GFI-Bot/Solidity_learning/src/NotesRegistry.sol",
+        "exportedSymbols": {
+            "INotesFactory": [
+                41021
+            ],
+            "NotesRegistry": [
+                41059
+            ]
+        },
+        "id": 41060,
+        "license": "MIT",
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 41014,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.8",
+                    ".24"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "32:24:26"
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "INotesFactory",
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "fullyImplemented": false,
+                "id": 41021,
+                "linearizedBaseContracts": [
+                    41021
+                ],
+                "name": "INotesFactory",
+                "nameLocation": "68:13:26",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "functionSelector": "95562567",
+                        "id": 41020,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getDeployedNotes",
+                        "nameLocation": "97:16:26",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 41015,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "113:2:26"
+                        },
+                        "returnParameters": {
+                            "id": 41019,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 41018,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 41020,
+                                    "src": "139:16:26",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                        "typeString": "address[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 41016,
+                                            "name": "address",
+                                            "nodeType": "ElementaryTypeName",
+                                            "src": "139:7:26",
+                                            "stateMutability": "nonpayable",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            }
+                                        },
+                                        "id": 41017,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "139:9:26",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                                            "typeString": "address[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "138:18:26"
+                        },
+                        "scope": 41021,
+                        "src": "88:69:26",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 41060,
+                "src": "58:101:26",
+                "usedErrors": [],
+                "usedEvents": []
+            },
+            {
+                "abstract": false,
+                "baseContracts": [],
+                "canonicalName": "NotesRegistry",
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "fullyImplemented": true,
+                "id": 41059,
+                "linearizedBaseContracts": [
+                    41059
+                ],
+                "name": "NotesRegistry",
+                "nameLocation": "206:13:26",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "constant": false,
+                        "functionSelector": "86f5f827",
+                        "id": 41024,
+                        "mutability": "mutable",
+                        "name": "notesFactory",
+                        "nameLocation": "247:12:26",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 41059,
+                        "src": "226:33:26",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_INotesFactory_$41021",
+                            "typeString": "contract INotesFactory"
+                        },
+                        "typeName": {
+                            "id": 41023,
+                            "nodeType": "UserDefinedTypeName",
+                            "pathNode": {
+                                "id": 41022,
+                                "name": "INotesFactory",
+                                "nameLocations": [
+                                    "226:13:26"
+                                ],
+                                "nodeType": "IdentifierPath",
+                                "referencedDeclaration": 41021,
+                                "src": "226:13:26"
+                            },
+                            "referencedDeclaration": 41021,
+                            "src": "226:13:26",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_INotesFactory_$41021",
+                                "typeString": "contract INotesFactory"
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "constant": false,
+                        "functionSelector": "3eb035c3",
+                        "id": 41027,
+                        "mutability": "mutable",
+                        "name": "allNotesContracts",
+                        "nameLocation": "282:17:26",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 41059,
+                        "src": "265:34:26",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                            "typeString": "address[]"
+                        },
+                        "typeName": {
+                            "baseType": {
+                                "id": 41025,
+                                "name": "address",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "265:7:26",
+                                "stateMutability": "nonpayable",
+                                "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                }
+                            },
+                            "id": 41026,
+                            "nodeType": "ArrayTypeName",
+                            "src": "265:9:26",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                                "typeString": "address[]"
+                            }
+                        },
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 41038,
+                            "nodeType": "Block",
+                            "src": "343:62:26",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 41036,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftHandSide": {
+                                            "id": 41032,
+                                            "name": "notesFactory",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 41024,
+                                            "src": "353:12:26",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_contract$_INotesFactory_$41021",
+                                                "typeString": "contract INotesFactory"
+                                            }
+                                        },
+                                        "nodeType": "Assignment",
+                                        "operator": "=",
+                                        "rightHandSide": {
+                                            "arguments": [
+                                                {
+                                                    "id": 41034,
+                                                    "name": "_factoryAddress",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 41029,
+                                                    "src": "382:15:26",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": [
+                                                    {
+                                                        "typeIdentifier": "t_address",
+                                                        "typeString": "address"
+                                                    }
+                                                ],
+                                                "id": 41033,
+                                                "name": "INotesFactory",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 41021,
+                                                "src": "368:13:26",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_type$_t_contract$_INotesFactory_$41021_$",
+                                                    "typeString": "type(contract INotesFactory)"
+                                                }
+                                            },
+                                            "id": 41035,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "typeConversion",
+                                            "lValueRequested": false,
+                                            "nameLocations": [],
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "368:30:26",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_contract$_INotesFactory_$41021",
+                                                "typeString": "contract INotesFactory"
+                                            }
+                                        },
+                                        "src": "353:45:26",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_contract$_INotesFactory_$41021",
+                                            "typeString": "contract INotesFactory"
+                                        }
+                                    },
+                                    "id": 41037,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "353:45:26"
+                                }
+                            ]
+                        },
+                        "id": 41039,
+                        "implemented": true,
+                        "kind": "constructor",
+                        "modifiers": [],
+                        "name": "",
+                        "nameLocation": "-1:-1:-1",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 41030,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 41029,
+                                    "mutability": "mutable",
+                                    "name": "_factoryAddress",
+                                    "nameLocation": "326:15:26",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 41039,
+                                    "src": "318:23:26",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 41028,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "318:7:26",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "317:25:26"
+                        },
+                        "returnParameters": {
+                            "id": 41031,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "343:0:26"
+                        },
+                        "scope": 41059,
+                        "src": "306:99:26",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 41048,
+                            "nodeType": "Block",
+                            "src": "444:68:26",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 41046,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "leftHandSide": {
+                                            "id": 41042,
+                                            "name": "allNotesContracts",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 41027,
+                                            "src": "454:17:26",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                                "typeString": "address[] storage ref"
+                                            }
+                                        },
+                                        "nodeType": "Assignment",
+                                        "operator": "=",
+                                        "rightHandSide": {
+                                            "arguments": [],
+                                            "expression": {
+                                                "argumentTypes": [],
+                                                "expression": {
+                                                    "id": 41043,
+                                                    "name": "notesFactory",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 41024,
+                                                    "src": "474:12:26",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_contract$_INotesFactory_$41021",
+                                                        "typeString": "contract INotesFactory"
+                                                    }
+                                                },
+                                                "id": 41044,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "memberLocation": "487:16:26",
+                                                "memberName": "getDeployedNotes",
+                                                "nodeType": "MemberAccess",
+                                                "referencedDeclaration": 41020,
+                                                "src": "474:29:26",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_function_external_view$__$returns$_t_array$_t_address_$dyn_memory_ptr_$",
+                                                    "typeString": "function () view external returns (address[] memory)"
+                                                }
+                                            },
+                                            "id": 41045,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "kind": "functionCall",
+                                            "lValueRequested": false,
+                                            "nameLocations": [],
+                                            "names": [],
+                                            "nodeType": "FunctionCall",
+                                            "src": "474:31:26",
+                                            "tryCall": false,
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                                "typeString": "address[] memory"
+                                            }
+                                        },
+                                        "src": "454:51:26",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                            "typeString": "address[] storage ref"
+                                        }
+                                    },
+                                    "id": 41047,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "454:51:26"
+                                }
+                            ]
+                        },
+                        "functionSelector": "49d10b64",
+                        "id": 41049,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "updateRegistry",
+                        "nameLocation": "420:14:26",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 41040,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "434:2:26"
+                        },
+                        "returnParameters": {
+                            "id": 41041,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "444:0:26"
+                        },
+                        "scope": 41059,
+                        "src": "411:101:26",
+                        "stateMutability": "nonpayable",
+                        "virtual": false,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 41057,
+                            "nodeType": "Block",
+                            "src": "580:41:26",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "id": 41055,
+                                        "name": "allNotesContracts",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 41027,
+                                        "src": "597:17:26",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                            "typeString": "address[] storage ref"
+                                        }
+                                    },
+                                    "functionReturnParameters": 41054,
+                                    "id": 41056,
+                                    "nodeType": "Return",
+                                    "src": "590:24:26"
+                                }
+                            ]
+                        },
+                        "functionSelector": "5ab1bd53",
+                        "id": 41058,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "getRegistry",
+                        "nameLocation": "527:11:26",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 41050,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "538:2:26"
+                        },
+                        "returnParameters": {
+                            "id": 41054,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 41053,
+                                    "mutability": "mutable",
+                                    "name": "",
+                                    "nameLocation": "-1:-1:-1",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 41058,
+                                    "src": "562:16:26",
+                                    "stateVariable": false,
+                                    "storageLocation": "memory",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                        "typeString": "address[]"
+                                    },
+                                    "typeName": {
+                                        "baseType": {
+                                            "id": 41051,
+                                            "name": "address",
+                                            "nodeType": "ElementaryTypeName",
+                                            "src": "562:7:26",
+                                            "stateMutability": "nonpayable",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_address",
+                                                "typeString": "address"
+                                            }
+                                        },
+                                        "id": 41052,
+                                        "nodeType": "ArrayTypeName",
+                                        "src": "562:9:26",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                                            "typeString": "address[]"
+                                        }
+                                    },
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "561:18:26"
+                        },
+                        "scope": 41059,
+                        "src": "518:103:26",
+                        "stateMutability": "view",
+                        "virtual": false,
+                        "visibility": "public"
+                    }
+                ],
+                "scope": 41060,
+                "src": "197:426:26",
+                "usedErrors": [],
+                "usedEvents": []
+            }
+        ],
+        "src": "32:592:26"
+    },
+    "functionHashes": {
+        "allNotesContracts(uint256)": "3eb035c3",
+        "getRegistry()": "5ab1bd53",
+        "notesFactory()": "86f5f827",
+        "updateRegistry()": "49d10b64"
+    },
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "184200",
+            "executionCost": "infinite",
+            "totalCost": "infinite"
+        },
+        "external": {
+            "allNotesContracts(uint256)": "4447",
+            "getRegistry()": "infinite",
+            "notesFactory()": "2342",
+            "updateRegistry()": "infinite"
+        }
+    }
+}

@@ -148,7 +148,7 @@ contract NotesTest is Test{
         emit log_named_uint("Gas used for batch create (3 notes)", gasUsed);
         vm.stopPrank();
     }
-
+    // viem
     function testFuzzCreateNote(string memory title, string memory content) public {
         vm.startPrank(user1);
         notes.createNote(title, content);
