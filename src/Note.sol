@@ -19,9 +19,9 @@ contract Notes is Ownable {
     }
 
     // Gas optimization: Use uint128 instead of uint256 for counters
-    mapping(address => uint128) private nextId;
-    mapping(address => mapping(uint128 => Note)) private notesByUser;
-    mapping(address => mapping(uint128 => bool)) private exists;
+    mapping(address => uint128) internal nextId;
+    mapping(address => mapping(uint128 => Note)) internal notesByUser;
+    mapping(address => mapping(uint128 => bool)) internal exists;
 
     event NoteCreated(address indexed user, uint128 indexed id, string title);
     event NoteUpdated(address indexed user, uint128 indexed id, string newTitle);
@@ -30,7 +30,7 @@ contract Notes is Ownable {
 
     constructor() Ownable(msg.sender) {}
 
-    function createNote(string memory _title, string memory _content) public {
+    function createNote(string memory _title, string memory _content) public virtual {
         uint128 id = nextId[msg.sender];
 
         // Gas optimization: Use assembly for timestamp
