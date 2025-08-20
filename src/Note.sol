@@ -30,7 +30,7 @@ contract Notes is Ownable {
 
     constructor() Ownable(msg.sender) {}
 
-    function createNote(string memory _title, string memory _content) public virtual {
+    function createNote(string calldata _title, string calldata _content) public virtual {
         uint128 id = nextId[msg.sender];
 
         // Gas optimization: Use assembly for timestamp
@@ -56,7 +56,7 @@ contract Notes is Ownable {
         return notesByUser[user][_id];
     }
 
-    function updateNote(uint128 _id, string memory _newTitle, string memory _newContent) public {
+    function updateNote(uint128 _id, string calldata _newTitle, string calldata _newContent) public {
         require(exists[msg.sender][_id], "Note does not exist");
         Note storage note = notesByUser[msg.sender][_id];
         require(note.status == Status.Active, "Note is archived");
@@ -117,17 +117,17 @@ contract Notes is Ownable {
     }
 
     // Gas optimization: Batch operations
-    function createMultipleNotes(string[] memory _titles, string[] memory _contents) public {
+    function createMultipleNotes(string[] calldata _titles, string[] calldata _contents) public {
         require(_titles.length == _contents.length, "Arrays length mismatch");
 
-        uint128 startId = nextId[msg.sender];
+        uint128 nextId_ = nextId[msg.sender];
         uint64 currentTimestamp;
         assembly {
             currentTimestamp := timestamp()
         }
 
         for (uint256 i = 0; i < _titles.length;) {
-            uint128 id = startId + uint128(i);
+            uint128 id = nextId_ + uint128(i);
             notesByUser[msg.sender][id] = Note({
                 id: id,
                 timestamp: currentTimestamp,
@@ -144,7 +144,7 @@ contract Notes is Ownable {
         }
 
         unchecked {
-            nextId[msg.sender] += uint128(_titles.length);
+            nextId[msg.sender] = nextId_ + uint128(_titles.length);
         }
     }
 }

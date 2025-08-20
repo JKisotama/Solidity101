@@ -17,7 +17,7 @@ contract NotesVault is Notes, AccessControl {
     }
 
     // Override the createNote function
-    function createNote(string memory _title, string memory _content) public override {
+    function createNote(string calldata _title, string calldata _content) public override {
         // Check 1: Enforce RBAC
         require(hasRole(MINTER_ROLE, msg.sender), "Caller is not a minter");
 
