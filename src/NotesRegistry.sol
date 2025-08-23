@@ -5,6 +5,7 @@ interface INotesFactory {
     function getDeployedNotes() external view returns (address[] memory);
 }
 // ABI interaction with NotesFactory
+
 contract NotesRegistry {
     INotesFactory public notesFactory;
     address[] public allNotesContracts;

@@ -13,7 +13,7 @@ contract DeployVault is Script {
         NotesVault notesVault = new NotesVault();
         notesVault.grantMinterRole(minterAddress);
         vm.stopBroadcast();
-        
+
         return notesVault;
     }
 }
