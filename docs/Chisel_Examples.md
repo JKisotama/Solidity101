@@ -1,22 +1,22 @@
-# Debugging with Chisel
+# Debug với Chisel
 
-Chisel is a powerful Solidity REPL (Read-Evaluate-Print Loop) that comes with Foundry. It allows you to quickly test snippets of Solidity code, debug transactions, or explore the state of a contract on a forked network, all from your command line.
+Chisel là một REPL (Read-Evaluate-Print Loop) cho Solidity, đi kèm với Foundry. Nó khá mạnh, cho phép tôi test nhanh các đoạn code Solidity, debug transaction, hay xem state của contract trên một mạng forked, tất cả ngay trên command line.
 
-## Starting Chisel
+## Khởi động Chisel
 
-You can start Chisel in a simple, stateless mode or by loading the state from your project.
+Tôi có thể bắt đầu Chisel ở chế độ đơn giản, không state, hoặc load state từ dự án của mình.
 
 ```bash
-# Start a simple Chisel session
+# Bắt đầu một session Chisel đơn giản
 chisel
 
-# Start Chisel with your project's contracts available
+# Bắt đầu Chisel với các contract của dự án có sẵn
 forge chisel
 ```
 
-## Basic Usage
+## Sử dụng cơ bản
 
-You can type Solidity code directly into the prompt.
+Có thể gõ code Solidity trực tiếp vào.
 
 ```solidity
 >> uint256 a = 10;
@@ -27,33 +27,33 @@ You can type Solidity code directly into the prompt.
 "0x0000000000000000000000000000000000000123"
 ```
 
-## Interacting with Contracts
+## Tương tác với Contract
 
-When you run `forge chisel`, you can instantiate your project's contracts.
+Khi chạy `forge chisel`, tôi có thể tạo instance của các contract trong dự án.
 
 ```solidity
-// Assumes you have run "forge chisel"
+// Giả sử đã chạy "forge chisel"
 >> import {Notes} from "src/Note.sol";
 >> Notes notes = new Notes();
 "Contract deployed at address 0x..."
 >> notes.createNote("Hello", "Chisel")
 >> notes.getNote(address(this), 0)
-// This will return the Note struct you just created
+// Lệnh này sẽ trả về struct Note vừa tạo
 ```
 
-## Debugging Example
+## Ví dụ Debug
 
-One of Chisel's most powerful features is debugging. You can load a transaction and step through its execution.
+Một trong những tính năng mạnh nhất của Chisel là debug. Tôi có thể load một transaction và đi qua từng bước thực thi của nó.
 
-Let's say you have a transaction hash `0x...` from a local Anvil node.
+Giả sử tôi có một transaction hash `0x...` từ node Anvil local.
 
 ```bash
-# Start chisel on a fork of your running Anvil instance
+# Bắt đầu chisel trên một fork của instance Anvil đang chạy
 chisel --fork-url http://localhost:8545
 
 >> !tx 0x... debug
-// This will start a debugging session for that transaction,
-// allowing you to inspect variables, memory, and storage at each step.
+// Lệnh này sẽ bắt đầu một phiên debug cho transaction đó,
+// cho phép tôi kiểm tra các biến, memory, và storage ở mỗi bước.
 ```
 
-Chisel is a deep tool, and this is just a brief introduction. It's highly recommended for debugging complex contract interactions.
+Chisel là một công cụ rất hay, và đây chỉ là giới thiệu sơ qua. Rất nên dùng nó để debug các tương tác contract phức tạp.

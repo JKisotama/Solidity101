@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import "../src/Note.sol";
 import "openzeppelin-contracts/contracts/access/Ownable.sol";
 
-contract NotesTest is Test{
+contract NotesTest is Test {
     Notes notes;
     address user1 = address(0x1);
     address user2 = address(0x2);
@@ -149,6 +149,7 @@ contract NotesTest is Test{
         vm.stopPrank();
     }
     // viem
+
     function testFuzzCreateNote(string memory title, string memory content) public {
         vm.startPrank(user1);
         notes.createNote(title, content);

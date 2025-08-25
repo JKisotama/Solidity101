@@ -19,7 +19,7 @@ contract NotesVaultTest is Test {
     // Test 1: Test the override logic - note limit
     function testCannotCreateMoreThanMaxNotes() public {
         vm.startPrank(minter);
-        for (uint i = 0; i < notesVault.MAX_NOTES_PER_USER(); i++) {
+        for (uint256 i = 0; i < notesVault.MAX_NOTES_PER_USER(); i++) {
             notesVault.createNote("Title", "Content");
         }
         vm.expectRevert("Max notes limit reached");
